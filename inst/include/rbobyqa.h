@@ -72,12 +72,12 @@ public:
     if (!control.npt) control.npt = std::min(npar + 2, (npar+2)*(npar+1)/2); //this caused an error for 1 or two parameters, changed
     
     if(lower_.empty()){
-      lower_.reserve(npar);
+      lower_.resize(npar);
       for(int i = 0; i< npar; i++)lower_[i] = R_NegInf;
     }
     
     if(upper_.empty()){
-      upper_.reserve(npar);
+      upper_.resize(npar);
       for(int i = 0; i< npar; i++)upper_[i] = R_PosInf;
     }
     double max_par = *max_element(par.begin(),par.end());

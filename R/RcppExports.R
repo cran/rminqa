@@ -19,7 +19,7 @@
 #'bobyqa_rosen_x1()
 #'@export
 bobyqa_rosen_x1 <- function() {
-    invisible(.Call('_rminqa_bobyqa_rosen_x1', PACKAGE = 'rminqa'))
+    invisible(.Call(`_rminqa_bobyqa_rosen_x1`))
 }
 
 #'@title Example 1b: Minimize Rosenbrock function using bobyqa
@@ -41,6 +41,53 @@ bobyqa_rosen_x1 <- function() {
 #'bobyqa_rosen_x1e()
 #'@export
 bobyqa_rosen_x1e <- function() {
-    invisible(.Call('_rminqa_bobyqa_rosen_x1e', PACKAGE = 'rminqa'))
+    invisible(.Call(`_rminqa_bobyqa_rosen_x1e`))
+}
+
+#' @title Example 0a: Minimize Rosenbrock function using bobyqa
+#' @description Minimize Rosenbrock function using bobyqa and
+#'             expect a normal exit from bobyqa.
+#' @return No return value, called for side effects.
+#' @examples
+#' fr <- function(x) {   ## Rosenbrock Banana function
+#'  x1 <- x[1]
+#'  x2 <- x[2]
+#'  100 * (x2 - x1 * x1)^2 + (1 - x1)^2
+#' }
+#' (x1 <- minqa::bobyqa(c(1, 2), fr, lower = c(0, 0), upper = c(4, 4)))
+#' ## => optimum at c(1, 1) with fval = 0
+#' str(x1) # see that the error code and msg are returned
+#'
+#' ## corresponding C++ implementation:
+#' bobyqa_rosen_test1()
+#' @useDynLib rminqa, .registration = TRUE
+#' @export
+bobyqa_rosen_test1 <- function() {
+    invisible(.Call(`_rminqa_bobyqa_rosen_test1`))
+}
+
+#'@title Example 0b: Minimize Rosenbrock function using bobyqa
+#'@description Minimize Rosenbrock function using bobyqa and
+#'             expect a normal exit from bobyqa. Allows for user input.
+#'@param start Starting values of the algorithm.
+#'@param lower Lower bounds of the parameters.
+#'@param upper Upper bounds of the parameters.     
+#'@return No return value, called for side effects.
+#'@examples
+#'fr <- function(x) {   ## Rosenbrock Banana function
+#'  x1 <- x[1]
+#'  x2 <- x[2]
+#'  100 * (x2 - x1 * x1)^2 + (1 - x1)^2
+#'}
+#'(x1 <- minqa::bobyqa(c(1, 2), fr, lower = c(0, 0), upper = c(4, 4)))
+#'## => optimum at c(1, 1) with fval = 0
+#'str(x1) # see that the error code and msg are returned
+#'
+#'## corresponding C++ implementation:
+#'bobyqa_rosen_test2(c(1,2),c(0,0),c(4,4))
+#' @importFrom Rcpp evalCpp
+#' @export
+bobyqa_rosen_test2 <- function(start, lower, upper) {
+    invisible(.Call(`_rminqa_bobyqa_rosen_test2`, start, lower, upper))
 }
 

@@ -1,6 +1,8 @@
 #include "../inst/include/rbobyqa.h"
+
 using namespace rminqa;
 
+// Below is the original interface using child classes
 // Functor is class template so it can be used with arma::vec and Eigen::VectorXd if required
 // here we use std::vector
 class Rosen : public Functor<std::vector<double> > {
@@ -11,6 +13,8 @@ public:
     return 100 * std::pow((x2 - x1 * x1), 2) + std::pow(1 - x1, 2);
   }
 };
+
+
 
 //'@title Example 1a: Minimize Rosenbrock function using bobyqa
 //'@description Minimize Rosenbrock function using bobyqa and

@@ -28,10 +28,33 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// bobyqa_rosen_test1
+void bobyqa_rosen_test1();
+RcppExport SEXP _rminqa_bobyqa_rosen_test1() {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    bobyqa_rosen_test1();
+    return R_NilValue;
+END_RCPP
+}
+// bobyqa_rosen_test2
+void bobyqa_rosen_test2(SEXP start, SEXP lower, SEXP upper);
+RcppExport SEXP _rminqa_bobyqa_rosen_test2(SEXP startSEXP, SEXP lowerSEXP, SEXP upperSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type start(startSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type lower(lowerSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type upper(upperSEXP);
+    bobyqa_rosen_test2(start, lower, upper);
+    return R_NilValue;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_rminqa_bobyqa_rosen_x1", (DL_FUNC) &_rminqa_bobyqa_rosen_x1, 0},
     {"_rminqa_bobyqa_rosen_x1e", (DL_FUNC) &_rminqa_bobyqa_rosen_x1e, 0},
+    {"_rminqa_bobyqa_rosen_test1", (DL_FUNC) &_rminqa_bobyqa_rosen_test1, 0},
+    {"_rminqa_bobyqa_rosen_test2", (DL_FUNC) &_rminqa_bobyqa_rosen_test2, 3},
     {NULL, NULL, 0}
 };
 
